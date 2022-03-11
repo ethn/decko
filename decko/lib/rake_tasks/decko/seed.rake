@@ -60,13 +60,6 @@ namespace :decko do
       Card::Assets.make_output_coded
     end
 
-    # def clean_files
-    #   puts "clean files"
-    #   Card::Cache.reset_all
-    #   # TODO: generalize to all unnecessary files
-    #   remove_old_machine_files
-    # end
-
     def clean_acts_and_actions
       clean_history
       clean_time_and_user_stamps

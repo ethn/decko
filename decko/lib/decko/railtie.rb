@@ -17,7 +17,7 @@ module Decko
           # aren't available there.
           #
           # Ideally we'd fix that and follow the naming convention.
-          p["lib/tasks"] << "#{gem_root}/lib/rake_tasks"
+          p["lib/tasks"] << "#{gem_root}/lib/tasks"
 
           p["config/environments"].unshift "#{gem_root}/config/environments"
           p["config/initializers"].unshift "#{gem_root}/config/initializers"

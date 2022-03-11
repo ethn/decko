@@ -18,15 +18,6 @@ decko_namespace = namespace :decko do
     end
   end
 
-  desc "create a decko database from scratch, load initial data, don't reset the cache"
-  task :seed_without_reset do
-    # This variant is needed to generate test databases for decks
-    # with custom codenames.
-    # The cache reset loads the environment. That tends to fail
-    # because of missing codenames that are added after the intial decko seed.
-    seed with_cache_reset: false
-  end
-
   desc "clear and load fixtures with existing tables"
   task reseed: :environment do
     ENV["SCHEMA"] ||= "#{Cardio.gem_root}/db/schema.rb"

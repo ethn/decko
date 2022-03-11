@@ -10,7 +10,8 @@ namespace :decko do
   namespace :docs do
     # trigger tmpsets and then run yardoc
     task :update do
-      Rake::Task["decko:tmpsets:trigger"].invoke
+      ENV["REPO_TMPSETS"] = "true"
+      Rake::Task["decko:docs:dummy"].invoke
       Rake::Task["decko:docs:yardoc"].invoke
     end
 
@@ -21,6 +22,15 @@ namespace :decko do
     task :yardoc do
       doc_dir = File.expand_path "..", Decko.gem_root
       system %(cd #{doc_dir}; yardoc)
+    end
+
+    # We have to load the environment with `env REPO_TMPSETS=true` in
+    # development mode to trigger the tmpset generation.
+    # There's probably a more elegant way?
+    #
+    # just load environment and trigger Card load
+    task dummy: :environment do
+      Card
     end
   end
 end
